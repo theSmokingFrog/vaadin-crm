@@ -1,6 +1,8 @@
 package dev.nhoffmann.vaadin.crm.ui;
 
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -11,12 +13,14 @@ import dev.nhoffmann.vaadin.crm.backend.entity.Contact;
 import dev.nhoffmann.vaadin.crm.backend.service.ContactService;
 
 @Route
+@CssImport("./styles/shared-styles.css")
 public class MainView extends VerticalLayout
 {
     private final ContactService contactService;
 
     private final Grid<Contact> grid = new Grid<>(Contact.class);
     private TextField filterText = new TextField();
+    private ContactForm form;
 
     public MainView(final ContactService pContactService)
     {
@@ -26,7 +30,12 @@ public class MainView extends VerticalLayout
         configureFilter();
         configureGrid();
 
-        add(filterText, grid);
+        form = new ContactForm();
+        Div content = new Div(grid, form);
+        content.addClassName("content");
+        content.setSizeFull();
+
+        add(filterText, content);
         updateGrid();
     }
 
