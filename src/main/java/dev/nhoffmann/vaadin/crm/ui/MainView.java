@@ -10,6 +10,7 @@ import com.vaadin.flow.router.Route;
 
 import dev.nhoffmann.vaadin.crm.backend.entity.Company;
 import dev.nhoffmann.vaadin.crm.backend.entity.Contact;
+import dev.nhoffmann.vaadin.crm.backend.service.CompanyService;
 import dev.nhoffmann.vaadin.crm.backend.service.ContactService;
 
 @Route
@@ -17,20 +18,22 @@ import dev.nhoffmann.vaadin.crm.backend.service.ContactService;
 public class MainView extends VerticalLayout
 {
     private final ContactService contactService;
+    private final CompanyService companyService;
 
     private final Grid<Contact> grid = new Grid<>(Contact.class);
     private TextField filterText = new TextField();
     private ContactForm form;
 
-    public MainView(final ContactService pContactService)
+    public MainView(final ContactService pContactService, final CompanyService pService)
     {
         contactService = pContactService;
+        companyService = pService;
         addClassName("list-view");
         setSizeFull();
         configureFilter();
         configureGrid();
 
-        form = new ContactForm();
+        form = new ContactForm(companyService.findAll());
         Div content = new Div(grid, form);
         content.addClassName("content");
         content.setSizeFull();
