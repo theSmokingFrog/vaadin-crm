@@ -1,23 +1,24 @@
-package dev.nhoffmann.vaadin.crm.ui;
+package dev.nhoffmann.vaadin.crm.ui.view.list;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import dev.nhoffmann.vaadin.crm.backend.entity.Company;
 import dev.nhoffmann.vaadin.crm.backend.entity.Contact;
 import dev.nhoffmann.vaadin.crm.backend.service.CompanyService;
 import dev.nhoffmann.vaadin.crm.backend.service.ContactService;
+import dev.nhoffmann.vaadin.crm.ui.MainLayout;
 
-@Route
-@CssImport("./styles/shared-styles.css")
-public class MainView extends VerticalLayout
+@Route(value = "", layout = MainLayout.class)
+@PageTitle("Contacts | Vaadin CRM")
+public class ListView extends VerticalLayout
 {
     private final ContactService contactService;
     private final CompanyService companyService;
@@ -26,7 +27,7 @@ public class MainView extends VerticalLayout
     private TextField filterText = new TextField();
     private ContactForm form;
 
-    public MainView(final ContactService pContactService, final CompanyService pService)
+    public ListView(final ContactService pContactService, final CompanyService pService)
     {
         contactService = pContactService;
         companyService = pService;

@@ -1,6 +1,5 @@
 package dev.nhoffmann.vaadin.crm;
 
-import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Keys;
@@ -8,19 +7,23 @@ import org.openqa.selenium.WebElement;
 
 import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.notification.testbench.NotificationElement;
+import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-public class MainViewIT extends AbstractViewTest {
+public class ListViewIT extends AbstractViewTest
+{
 
     @Test
-    public void clickingButtonShowsNotification() {
+    public void clickingButtonShowsNotification()
+    {
         Assert.assertFalse($(NotificationElement.class).exists());
         $(ButtonElement.class).first().click();
         Assert.assertTrue($(NotificationElement.class).waitForFirst().isOpen());
     }
 
     @Test
-    public void clickingButtonTwiceShowsTwoNotifications() {
+    public void clickingButtonTwiceShowsTwoNotifications()
+    {
         Assert.assertFalse($(NotificationElement.class).exists());
         ButtonElement button = $(ButtonElement.class).first();
         button.click();

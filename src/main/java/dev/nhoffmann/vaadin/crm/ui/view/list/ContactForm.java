@@ -1,4 +1,4 @@
-package dev.nhoffmann.vaadin.crm.ui;
+package dev.nhoffmann.vaadin.crm.ui.view.list;
 
 import java.util.List;
 
